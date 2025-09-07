@@ -9,6 +9,7 @@ import type { AppState } from './types';
 import { AppStatus } from './types';
 import InspirationCarousel from './components/InspirationCarousel';
 import ErrorModal from './components/ErrorModal';
+import Footer from './components/Footer';
 
 const App: React.FC = () => {
   const [baseImage, setBaseImage] = useState<File | null>(null);
@@ -148,10 +149,10 @@ const App: React.FC = () => {
   const styleImagePreview = styleImage ? URL.createObjectURL(styleImage) : null;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-100 via-purple-100 to-indigo-200 font-sans text-gray-800">
+    <div className="min-h-screen font-sans text-gray-800">
       <Header />
       <main className="container mx-auto px-4 py-8">
-        <div className="max-w-4xl mx-auto bg-white/60 backdrop-blur-lg rounded-2xl shadow-xl p-6 md:p-10 border border-white/30">
+        <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-sm p-6 md:p-10 border border-gray-200/80">
           
           <InspirationCarousel />
 
@@ -161,7 +162,7 @@ const App: React.FC = () => {
           </div>
 
           <div className="mb-8">
-            <label htmlFor="prompt" className="block text-lg font-medium text-gray-700 mb-2">
+            <label htmlFor="prompt" className="block text-base font-medium text-gray-700 mb-2">
               Describe your desired mood (Optional)
             </label>
             <input
@@ -170,7 +171,7 @@ const App: React.FC = () => {
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
               placeholder="e.g., 'cosmic glitter', 'delicate floral', 'bold geometric'"
-              className="w-full px-4 py-3 bg-white/70 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition disabled:bg-gray-200 disabled:cursor-not-allowed"
+              className="w-full px-4 py-2 bg-slate-50 border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition disabled:bg-gray-200 disabled:cursor-not-allowed"
               disabled={isQuotaExhausted}
             />
           </div>
@@ -179,8 +180,8 @@ const App: React.FC = () => {
             <button
               onClick={handleInitialGenerate}
               disabled={!canGenerate}
-              className={`inline-flex items-center justify-center gap-2 px-8 py-4 font-bold text-white rounded-full shadow-lg transition-all duration-300 ease-in-out
-                ${canGenerate ? 'bg-gradient-to-r from-pink-500 to-purple-600 hover:scale-105 hover:shadow-2xl' : 'bg-gray-400 cursor-not-allowed'}
+              className={`inline-flex items-center justify-center gap-2 px-8 py-3 font-semibold text-white rounded-full shadow-sm transition-all duration-300 ease-in-out
+                ${canGenerate ? 'bg-gray-900 hover:bg-gray-700' : 'bg-gray-400 cursor-not-allowed'}
               `}
             >
               <SparklesIcon />
@@ -204,9 +205,7 @@ const App: React.FC = () => {
           />
         </div>
       </main>
-      <footer className="text-center py-6 text-gray-500">
-        <p>Powered by Gemini AI</p>
-      </footer>
+      <Footer />
       <ErrorModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}

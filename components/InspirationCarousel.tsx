@@ -10,22 +10,18 @@ const imageUrls = [
 
 const InspirationCarousel: React.FC = () => {
   return (
-    <div className="mb-8">
-      <h2 className="text-2xl font-semibold text-center text-gray-700 mb-4">
+    <div className="mb-10">
+      <h2 className="text-xl font-medium text-center text-gray-800 mb-4">
         Get Inspired
       </h2>
-      <div className="w-full inline-flex flex-nowrap overflow-hidden">
-        <ul className="flex items-center justify-center md:justify-start [&_li]:mx-4 animate-scroll">
-          {imageUrls.map((url, index) => (
-            <li key={`first-${index}`}>
-              <img src={url} alt={`Nail art inspiration ${index + 1}`} className="h-40 w-auto max-w-none rounded-lg shadow-md" />
-            </li>
-          ))}
-        </ul>
-        <ul className="flex items-center justify-center md:justify-start [&_li]:mx-4 animate-scroll" aria-hidden="true">
-          {imageUrls.map((url, index) => (
-            <li key={`second-${index}`}>
-              <img src={url} alt="" className="h-40 w-auto max-w-none rounded-lg shadow-md" />
+      <div 
+        className="w-full overflow-hidden group"
+        style={{ maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)' }}
+      >
+        <ul className="flex items-center space-x-4 animate-scroll group-hover:[animation-play-state:paused]">
+          {[...imageUrls, ...imageUrls].map((url, index) => (
+            <li key={`inspiration-${index}`} className="flex-shrink-0">
+              <img src={url} alt={`Nail art inspiration ${index + 1}`} className="h-40 w-auto max-w-none rounded-lg shadow-sm" />
             </li>
           ))}
         </ul>
